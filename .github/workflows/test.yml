@@ -1,50 +1,48 @@
 name: Test and Validate
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+    push:
+        branches: [ main, develop ]
+    pull_request:
+        branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x, 22.x]
-        python-version: ['3.10', '3.11']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          
-      - name: Install Node.js dependencies
-        run: npm ci
-        
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Run EditorConfig check
-        run: npx editorconfig-checker
-        
-      - name: Validate HTML templates
-        run: npm run validate-html
-        
-      - name: Build frontend assets
-        run: npm run build:frontend
-        
-      - name: Test MkDocs build
-        run: npm run build:mkdocs
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [20.x, 22.x]
+                python-version: ['3.10', '3.11']
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+
+            - name: Setup Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v5
+              with:
+                  python-version: ${{ matrix.python-version }}
+                  cache: 'pip'
+
+            - name: Install Node.js dependencies
+              run: npm ci
+
+            - name: Install Python dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+
+            - name: Run tests
+              run: npm test
+
+            - name: Test frontend build
+              run: npm run build:frontend
+
+            - name: Test MkDocs build
+              run: npm run build:mkdocs

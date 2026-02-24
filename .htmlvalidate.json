@@ -1,21 +1,21 @@
 {
-  "extends": ["html-validate:recommended"],
-  "rules": {
-    "no-inline-style": "off",
-    "require-sri": "off",
-    "no-trailing-whitespace": "off",
-    "void-content": "off",
-    "no-unknown-elements": "warn",
-    "require-lang": "error",
-    "meta-refresh": "off",
-    "no-conditional-comment": "off",
-    "doctype-html": "error",
-    "attr-quotes": ["error", { "style": "double" }],
-    "class-pattern": ["warn", { "pattern": "kebabcase" }],
-    "id-pattern": ["warn", { "pattern": "kebabcase" }]
-  },
-  "elements": [
-    "html5"
-  ],
-  "plugins": ["html-validate:document"]
+    "extends": ["html-validate:recommended"],
+    "rules": {
+        "no-inline-style": "off",
+        "require-sri": "off",
+        "no-trailing-whitespace": "off",
+        "void-content": "off",
+        "no-unknown-elements": "warn",
+        "require-lang": "error",
+        "meta-refresh": "off",
+        "no-conditional-comment": "off",
+        "doctype-html": "error",
+        "attr-quotes": ["error", { "style": "double" }],
+        "class-pattern": ["warn", { "pattern": "kebabcase" }],
+        "id-pattern": ["warn", { "pattern": "kebabcase" }]
+    },
+    "elements": [
+        "html5"
+    ],
+    "plugins": ["html-validate:document"]
 }
