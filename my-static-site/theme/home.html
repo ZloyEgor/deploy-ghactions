@@ -79,9 +79,28 @@
 
 <style>
 .hero-section {
-    background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-info) 100%);
+    background: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
     position: relative;
     overflow: hidden;
+    color: white !important;
+}
+
+.hero-section * {
+    color: white !important;
+}
+
+.hero-section .btn-light {
+    color: #0d6efd !important;
+}
+
+.hero-section .btn-outline-light {
+    color: white !important;
+    border-color: white !important;
+}
+
+.hero-section .btn-outline-light:hover {
+    background-color: white !important;
+    color: #0d6efd !important;
 }
 
 .hero-section::before {
@@ -153,6 +172,10 @@
     .display-4 {
         font-size: 2.5rem;
     }
+}
+
+[data-bs-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, #1a365d 0%, #553c9a 100%);
 }
 
 [data-bs-theme="dark"] .stats-section {
