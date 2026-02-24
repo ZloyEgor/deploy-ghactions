@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-9">
+        <article class="content">
+            {% if page.title %}
+                <header class="mb-4">
+                    <h1 class="display-4">{{ page.title }}</h1>
+                    {% if page.meta.description %}
+                        <p class="lead text-muted">{{ page.meta.description }}</p>
+                    {% endif %}
+                </header>
+            {% endif %}
+            
+            <div class="content-body">
+                {{ page.content }}
+            </div>
+            
+            {% if page.meta.tags %}
+                <div class="tags mt-4">
+                    <h6>Теги:</h6>
+                    {% for tag in page.meta.tags %}
+                        <span class="badge bg-secondary me-1">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </article>
+        
+        <!-- Page navigation -->
+        {% if page.previous_page or page.next_page %}
+            <nav class="page-nav mt-5">
+                <div class="row">
+                    <div class="col-6">
+                        {% if page.previous_page %}
+                            <a href="{{ page.previous_page.url | url }}" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-2"></i>{{ page.previous_page.title }}
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-6 text-end">
+                        {% if page.next_page %}
+                            <a href="{{ page.next_page.url | url }}" class="btn btn-outline-primary">
+                                {{ page.next_page.title }}<i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        {% endif %}
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-lg-3">
+        <aside class="sidebar">
+            <!-- Table of Contents -->
+            {% if page.toc %}
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">Содержание</h6>
+                    </div>
+                    <div class="card-body">
+                        {{ page.toc }}
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- Site navigation -->
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Навигация</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% for nav_item in nav %}
+                            <li class="mb-2">
+                                <a href="{{ nav_item.url | url }}" 
+                                   class="text-decoration-none {% if nav_item.active %}fw-bold{% endif %}">
+                                    {{ nav_item.title }}
+                                </a>
+                                {% if nav_item.children %}
+                                    <ul class="list-unstyled ms-3 mt-1">
+                                        {% for child in nav_item.children %}
+                                            <li class="mb-1">
+                                                <a href="{{ child.url | url }}" 
+                                                   class="text-decoration-none text-muted {% if child.active %}fw-bold text-primary{% endif %}">
+                                                    {{ child.title }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}

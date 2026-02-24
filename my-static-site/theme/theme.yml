@@ -1,0 +1,32 @@
+name: Custom Bootstrap React Theme
+description: A custom MkDocs theme with Bootstrap 5 and React components
+author: Your Name
+version: 1.0.0
+
+vars:
+  # Theme colors
+  primary_color: '#0d6efd'
+  secondary_color: '#6c757d'
+  success_color: '#198754'
+  danger_color: '#dc3545'
+  warning_color: '#ffc107'
+  info_color: '#0dcaf0'
+  light_color: '#f8f9fa'
+  dark_color: '#212529'
+
+  # Typography
+  font_family: 'Roboto, sans-serif'
+  font_family_mono: 'Roboto Mono, monospace'
+  font_size_base: '1rem'
+  line_height_base: '1.5'
+
+  # Layout
+  container_max_width: '1200px'
+  sidebar_width: '250px'
+  navbar_height: '56px'
+
+  # Features
+  enable_search: true
+  enable_dark_mode: true
+  enable_toc: true
+  enable_navigation: true

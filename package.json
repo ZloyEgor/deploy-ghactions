@@ -1,22 +1,43 @@
 {
   "private": true,
   "scripts": {
+    "dev": "vite",
+    "dev:mkdocs": "cd my-static-site && mkdocs serve",
     "start": "browser-sync start --server src --no-notify --no-ui --cwd src --files index.html,styles/**/*",
-    "test": "editorconfig-checker",
+    "test": "editorconfig-checker && npm run validate-html",
+    "validate-html": "node scripts/validate-html.js",
+    "build:clean": "rimraf my-static-site/theme/assets my-static-site/site dist",
+    "build:frontend": "vite build",
+    "build:mkdocs": "cd my-static-site && python -m mkdocs build --verbose --clean",
+    "build:minify": "html-minifier --remove-comments --collapse-whitespace --minify-css --minify-js --input-dir dist --output-dir dist --file-ext html",
+    "build": "node scripts/build.js",
     "html": "html-minifier --remove-comments --collapse-whitespace --input-dir src --output-dir dist --file-ext html",
     "styles": "postcss src/styles/index.css --use postcss-import --use postcss-csso --no-map --output dist/styles/index.css",
-    "build": "npm run html && npm run styles",
-    "serve": "serve"
+    "serve": "serve dist",
+    "serve:mkdocs": "serve my-static-site/site"
   },
   "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
     "browser-sync": "^2.26.7",
     "editorconfig-checker": "^3.1.0",
+    "glob": "^10.3.0",
     "html-minifier": "^4.0.0",
-    "postcss-cli": "^7.1.1",
-    "postcss-csso": "^4.0.0",
-    "postcss-import": "^12.0.1"
+    "html-validate": "^8.9.0",
+    "postcss": "^8.4.0",
+    "postcss-cli": "^10.1.0",
+    "postcss-csso": "^6.0.0",
+    "postcss-import": "^15.1.0",
+    "rimraf": "^5.0.0",
+    "sass": "^1.69.0",
+    "typescript": "^5.2.0",
+    "vite": "^5.0.0"
   },
   "dependencies": {
+    "bootstrap": "^5.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "serve": "^13.0.2"
   }
 }

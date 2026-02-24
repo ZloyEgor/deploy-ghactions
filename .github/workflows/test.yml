@@ -1,4 +1,4 @@
-name: Test
+name: Test and Validate
 
 on:
   pull_request:
@@ -7,15 +7,44 @@ on:
       - main
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [20.x, 22.x]
+        python-version: ['3.10', '3.11']
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm test
+          cache: 'npm'
+          
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+          
+      - name: Install Node.js dependencies
+        run: npm ci
+        
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run EditorConfig check
+        run: npx editorconfig-checker
+        
+      - name: Validate HTML templates
+        run: npm run validate-html
+        
+      - name: Build frontend assets
+        run: npm run build:frontend
+        
+      - name: Test MkDocs build
+        run: npm run build:mkdocs

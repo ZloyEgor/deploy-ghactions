@@ -1,0 +1,82 @@
+[data-bs-theme="dark"] {
+  --bs-body-bg: #{$body-bg-dark};
+  --bs-body-color: #{$body-color-dark};
+  
+  .card {
+    --bs-card-bg: #{$card-bg-dark};
+  }
+  
+  .navbar {
+    --bs-navbar-bg: #{$navbar-dark-bg};
+  }
+  
+  // Code blocks in dark mode
+  pre {
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568;
+  }
+  
+  code {
+    background-color: #4a5568 !important;
+    color: #e2e8f0 !important;
+  }
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bs-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-gray-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-gray-500);
+}
+
+[data-bs-theme="dark"] {
+  ::-webkit-scrollbar-track {
+    background: var(--bs-gray-800);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--bs-gray-600);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-gray-500);
+  }
+}
+
+@media print {
+  .navbar,
+  .sidebar,
+  #back-to-top,
+  .copy-code-btn {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: none !important;
+  }
+  
+  .col-lg-9 {
+    width: 100% !important;
+  }
+}
