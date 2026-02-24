@@ -31,9 +31,6 @@ if (fs.existsSync(manifestPath)) {
     if (key.includes('main.ts')) {
       mkdocsConfig = mkdocsConfig.replace('assets/js/main.js', `assets/${assetPath}`);
     }
-    if (key.includes('index.tsx')) {
-      mkdocsConfig = mkdocsConfig.replace('assets/js/components.js', `assets/${assetPath}`);
-    }
     if (key.includes('main.scss')) {
       mkdocsConfig = mkdocsConfig.replace('assets/css/main.css', `assets/${assetPath}`);
     }

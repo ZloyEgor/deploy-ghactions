@@ -1,5 +1,6 @@
 import '../styles/main.scss';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 class SiteManager {
   constructor() {
     this.init();
@@ -8,7 +9,6 @@ class SiteManager {
   private init() {
     this.setupScrollSpy();
     this.setupSmoothScrolling();
-    this.setupSearchFunctionality();
     this.setupExternalLinks();
     this.setupCodeHighlighting();
   }
@@ -36,27 +36,12 @@ class SiteManager {
     });
   }
 
-  private setupSearchFunctionality() {
-    const searchInput = document.getElementById('mkdocs-search-query') as HTMLInputElement;
-    if (searchInput) {
-      let searchTimeout: NodeJS.Timeout;
-      
-      searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-          this.performSearch(searchInput.value);
-        }, 300);
-      });
-    }
-  }
-
   private performSearch(query: string) {
     if (!query.trim()) return;
     
     console.log('Searching for:', query);
-    window.dispatchEvent(new CustomEvent('search', { 
-      detail: { query } 
-    }));
+    
+    window.dispatchEvent(new CustomEvent('search', { detail: { query } }));
   }
 
   private setupExternalLinks() {
@@ -79,24 +64,23 @@ class SiteManager {
       if (pre) {
         const button = document.createElement('button');
         button.className = 'btn btn-sm btn-outline-secondary copy-code-btn';
-        button.innerHTML = '<i class="fas fa-copy"></i>';
-        button.title = 'Копировать код';
-        
-        button.addEventListener('click', () => {
-          navigator.clipboard.writeText(block.textContent || '').then(() => {
-            button.innerHTML = '<i class="fas fa-check"></i>';
-            setTimeout(() => {
-              button.innerHTML = '<i class="fas fa-copy"></i>';
-            }, 2000);
-          });
-        });
-        
-        pre.style.position = 'relative';
+        button.innerHTML = 'Копировать';
         button.style.position = 'absolute';
         button.style.top = '10px';
         button.style.right = '10px';
+        button.style.opacity = '0';
         
+        pre.style.position = 'relative';
         pre.appendChild(button);
+        
+        button.addEventListener('click', () => {
+          navigator.clipboard.writeText(block.textContent || '').then(() => {
+            button.innerHTML = 'Скопировано!';
+            setTimeout(() => {
+              button.innerHTML = 'Копировать';
+            }, 2000);
+          });
+        });
       }
     });
   }
@@ -104,11 +88,6 @@ class SiteManager {
 
 document.addEventListener('DOMContentLoaded', () => {
   new SiteManager();
-  
-  if (!document.getElementById('back-to-top')) {
-    const backToTopDiv = document.createElement('div');
-    backToTopDiv.id = 'back-to-top';
-    document.body.appendChild(backToTopDiv);
-  }
 });
+
 (window as any).SiteManager = SiteManager;

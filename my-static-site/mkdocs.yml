@@ -1,5 +1,5 @@
 site_name: Cтатический сайт
-site_description: Cтатический сайт на MkDocs с React компонентами, Bootstrap дизайном и автоматическим развертыванием через GitHub Actions
+site_description: Статический сайт на MkDocs с современным JavaScript, Bootstrap дизайном и автоматическим развертыванием через GitHub Actions
 site_author: Егор Стуков
 site_url: https://zloyegor.github.io/deploy-ghactions/
 
@@ -56,6 +56,5 @@ extra_css:
 
 extra_javascript:
     - assets/js/main.js
-    - assets/js/components.js
 
 plugins: []

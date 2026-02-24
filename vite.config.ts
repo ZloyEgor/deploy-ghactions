@@ -1,15 +1,13 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [],
   build: {
     outDir: 'my-static-site/theme/assets',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/scripts/main.ts'),
-        components: resolve(__dirname, 'src/components/index.tsx')
+        main: resolve(__dirname, 'src/scripts/main.ts')
       },
       output: {
         entryFileNames: 'js/[name].js',
