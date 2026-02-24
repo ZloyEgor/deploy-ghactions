@@ -34,7 +34,7 @@ theme:
 
 markdown_extensions:
     - toc:
-        permalink: true
+        permalink: false
     - tables
     - fenced_code
     - pymdownx.highlight:
@@ -58,6 +58,4 @@ extra_javascript:
     - assets/js/main.js
     - assets/js/components.js
 
-plugins:
-    - search:
-        lang: ru
+plugins: []

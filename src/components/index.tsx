@@ -1,15 +1,13 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import SearchWidget from './SearchWidget';
 import TableOfContents from './TableOfContents';
 import ThemeToggle from './ThemeToggle';
 import BackToTop from './BackToTop';
 
 const components = {
-  SearchWidget,
-  TableOfContents,
-  ThemeToggle,
-  BackToTop
+    TableOfContents,
+    ThemeToggle,
+    BackToTop
 };
 declare global {
   interface Window {
@@ -59,11 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.mountReactComponent('ThemeToggle', 'theme-toggle-react');
   }
 
-  const searchContainer = document.getElementById('search-widget');
-  if (searchContainer) {
-    const searchData = (window as any).searchData || [];
-    window.mountReactComponent('SearchWidget', 'search-widget', { searchData });
-  }
 
   const tocContainer = document.getElementById('toc-widget');
   if (tocContainer) {
