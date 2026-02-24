@@ -194,4 +194,38 @@ npm run serve
 - `package.json` - зависимости и скрипты Node.js
 - `requirements.txt` - зависимости Python
 
+## 8. Разработка
+
+### 8.1 Быстрый старт
+
+Для локальной разработки проекта:
+
+```bash
+# Установка зависимостей
+npm install
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Запуск dev-сервера
+npm run dev
+```
+
+Сайт будет доступен по адресу: http://127.0.0.1:8000
+
+### 8.2 Команды разработки
+
+- `npm run dev` - запуск полного dev-окружения с автоперезагрузкой
+- `npm run dev:build` - пересборка фронтенд-ресурсов
+- `npm run build` - полная сборка для продакшена
+- `npm test` - запуск тестов и валидации HTML
+
+### 8.3 Рабочий процесс
+
+- **Markdown файлы** - автоматическая перезагрузка при изменении
+- **Стили и JavaScript** - требуют пересборки командой `npm run dev:build`
+- **Jinja2 шаблоны** - требуют перезапуска dev-сервера
+
+Подробное руководство по разработке: [DEV_GUIDE.md](DEV_GUIDE.md)
+
 Проект размещен в репозитории GitHub и доступен по адресу: https://zloyegor.github.io/deploy-ghactions/

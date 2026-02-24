@@ -1,6 +1,10 @@
 [data-bs-theme="dark"] {
   --bs-body-bg: #{$body-bg-dark};
   --bs-body-color: #{$body-color-dark};
+  --bs-heading-color: #ffffff;
+  --bs-text-color: #e9ecef;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
   
   .card {
     --bs-card-bg: #{$card-bg-dark};

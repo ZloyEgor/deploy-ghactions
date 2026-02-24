@@ -1,8 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "dev:mkdocs": "cd my-static-site && mkdocs serve",
+    "dev": "node scripts/dev.js",
+    "dev:frontend": "vite build --watch",
+    "dev:mkdocs": "cd my-static-site && python -m mkdocs serve --dev-addr=127.0.0.1:8000",
+    "dev:watch": "concurrently \"npm run dev:frontend\" \"npm run dev:mkdocs\" --names \"VITE,MKDOCS\" --prefix-colors \"blue,green\"",
+    "dev:build": "npm run build:frontend && echo '✅ Frontend rebuilt! MkDocs will auto-reload.'",
     "start": "browser-sync start --server src --no-notify --no-ui --cwd src --files index.html,styles/**/*",
     "test": "npm run validate-html",
     "validate-html": "node scripts/validate-html.js",
@@ -18,6 +21,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
+    "concurrently": "^9.2.1",
     "editorconfig-checker": "^3.1.0",
     "glob": "^10.3.0",
     "html-minifier": "^4.0.0",
