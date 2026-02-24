@@ -79,7 +79,7 @@ template: home.html
 
 ```bash
 # Клонирование репозитория
-git clone https://github.com/egorstukov/deploy-ghactions.git
+git clone https://github.com/ZloyEgor/deploy-ghactions.git
 
 # Установка зависимостей
 npm install

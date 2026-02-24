@@ -202,4 +202,4 @@ npm run serve
 - `package.json` - зависимости и скрипты Node.js
 - `requirements.txt` - зависимости Python
 
-Проект размещен в репозитории GitHub и доступен по адресу: https://egorstukov.github.io/deploy-ghactions/
+Проект размещен в репозитории GitHub и доступен по адресу: https://zloyegor.github.io/deploy-ghactions/

@@ -1,7 +1,7 @@
-site_name: Современный веб-сайт
-site_description: Инновационный статический сайт на MkDocs с React компонентами, Bootstrap дизайном и автоматическим развертыванием через GitHub Actions
+site_name: Cтатический сайт
+site_description: Cтатический сайт на MkDocs с React компонентами, Bootstrap дизайном и автоматическим развертыванием через GitHub Actions
 site_author: Егор Стуков
-site_url: https://egorstukov.github.io/deploy-ghactions/
+site_url: https://zloyegor.github.io/deploy-ghactions/
 
 nav:
     - Главная: index.md
